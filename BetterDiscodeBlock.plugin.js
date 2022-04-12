@@ -141,6 +141,7 @@ module.exports = (() => {
                     types: '#b58900',
                     unspecifiedAttributes: '#b58900',
                     variables: '#b58900',
+                    iconColor:'#ffffff'
                 },
                 theme: ''
             }
@@ -503,7 +504,7 @@ module.exports = (() => {
                 .bd-codeblock-language svg {
 				    height: 20px;
 				    margin-right: 8px;
-				    color: #ffffff;
+				    color: ${settings.hljs.iconColor};
 				}
 				
 				.bd-codeblock-language .svg-icon {
