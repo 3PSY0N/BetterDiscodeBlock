@@ -638,7 +638,7 @@ module.exports = (() => {
 				}
 
 				.hljs > .bd-codeblock-table > tr > td > .hljs-title {
-					color: ${settings.hljs.title};
+					color: ${settings.hljs.titles};
 				}
 
 				.hljs > .bd-codeblock-table > tr > td > .hljs-function > .hljs-params > .hljs-built_in {
