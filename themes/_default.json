@@ -15,6 +15,8 @@
   "hljs_doctag":null,
   "hljs_emphasis":null,
   "hljs_formula":null,
+  "hljs_function_title":null,
+  "hljs_function_keyword":null,
   "hljs_keyword":null,
   "hljs_lineNumber":null,
   "hljs_link":null,
@@ -44,7 +46,5 @@
   "hljs_template_variable":null,
   "hljs_title":null,
   "hljs_type":null,
-  "hljs_variable":null,
-  "hljs_function_title":null,
-  "hljs_function_keyword":null
+  "hljs_variable":null
 }
