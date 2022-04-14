@@ -102,47 +102,50 @@ module.exports = (() => {
                     languageIconColor:null,
                     hljs_background:null,
                     hljs_foreground:null,
-                    hljs_lineNumber:null,
+                    hljs_addition:null,
+                    hljs_attribute:null,
+                    hljs_attr:null,
+                    hljs_built_in:null,
+                    hljs_bullet:null,
+                    hljs_class_keyword:null,
+                    hljs_class_title:null,
+                    hljs_code:null,
                     hljs_comment:null,
+                    hljs_deletion:null,
+                    hljs_doctag:null,
+                    hljs_emphasis:null,
+                    hljs_formula:null,
+                    hljs_keyword:null,
+                    hljs_lineNumber:null,
+                    hljs_link:null,
+                    hljs_literal:null,
+                    hljs_meta:null,
+                    hljs_meta_string:null,
+                    hljs_number:null,
+                    hljs_operator:null,
                     hljs_punctuation:null,
+                    hljs_quote:null,
+                    hljs_regexp:null,
+                    hljs_section:null,
+                    hljs_selector_attr:null,
+                    hljs_selector_class:null,
+                    hljs_selector_id:null,
+                    hljs_selector_pseudo:null,
+                    hljs_selector_tag:null,
+                    hljs_string:null,
+                    hljs_strong:null,
+                    hljs_subst:null,
+                    hljs_symbol:null,
                     hljs_tag:null,
                     hljs_tag_attr:null,
                     hljs_tag_name:null,
-                    hljs_attribute:null,
-                    hljs_doctag:null,
-                    hljs_formula:null,
-                    hljs_keyword:null,
-                    hljs_deletion:null,
-                    hljs_number:null,
-                    hljs_quote:null,
-                    hljs_selector_class:null,
-                    hljs_selector_id:null,
-                    hljs_selector_tag:null,
-                    hljs_selector_attr:null,
-                    hljs_selector_pseudo:null,
-                    hljs_subst:null,
-                    hljs_string:null,
                     hljs_template_tag:null,
-                    hljs_type:null,
-                    hljs_section:null,
-                    hljs_title:null,
-                    hljs_class_title:null,
-                    hljs_class_keyword:null,
-                    hljs_link:null,
-                    hljs_operator:null,
-                    hljs_regexp:null,
-                    hljs_symbol:null,
                     hljs_template_variable:null,
+                    hljs_title:null,
+                    hljs_type:null,
                     hljs_variable:null,
-                    hljs_literal:null,
-                    hljs_addition:null,
-                    hljs_built_in:null,
-                    hljs_bullet:null,
-                    hljs_code:null,
-                    hljs_meta:null,
-                    hljs_meta_string:null,
-                    hljs_emphasis:null,
-                    hljs_strong:null
+                    hljs_function_title:null,
+                    hljs_function_keyword:null,
                 },
                 theme: ''
             }
@@ -156,7 +159,7 @@ module.exports = (() => {
                     this.unpatch = Patcher.after(parser.defaultRules.codeBlock, 'react', (_, nodes, output) => {
                         this.inject(nodes, output)
 
-                        nodes[0].content = this.dedent(nodes[0].content)
+                        //nodes[0].content = this.dedent(nodes[0].content)
 
                         return output
                     });
@@ -349,7 +352,7 @@ module.exports = (() => {
 
 
                 dedent(content) {
-                    content = content.replace(/\t/g, ' '.repeat(4));
+                    content = content.replace(/\t/g, ' '.repeat(2));
 
                     const min = content.match(/^[^\S\n]+/gm)?.reduce((x, y) => Math.min(x, y.length), Infinity) ?? 0;
 
@@ -588,50 +591,52 @@ module.exports = (() => {
                 get codeBlockStyle() {
                     return `
                 .hljs {
-                  background: ${settings.hljs.hljs_foreground} !important;
+                  background: ${settings.hljs.hljs_background} !important;
                   color: ${settings.hljs.hljs_foreground} !important!;
                 }
 
-                .hljs-comment { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-punctuation { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-tag { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-tag .hljs-attr { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-tag .hljs-name { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-attribute { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-doctag { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-formula { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-keyword { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-deletion { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-number { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-quote { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-selector-class { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-selector-id { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-selector-tag { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-selector-attr { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-selector-pseudo { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-subst { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-string { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-template-tag { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-type { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-section { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-title { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-class .hljs-title { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-class .hljs-keyword { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-link { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-operator { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-regexp { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-symbol { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-template-variable { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-variable { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-literal { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-addition { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-built_in { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-bullet { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-code { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-meta { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-meta .hljs-string { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-emphasis { color: ${settings.hljs.hljs_foreground}; }
-                .hljs-strong { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-comment { color: ${settings.hljs.hljs_comment}; }
+                .hljs-punctuation { color: ${settings.hljs.hljs_punctuation}; }
+                .hljs-tag { color: ${settings.hljs.hljs_tag}; }
+                .hljs-tag .hljs-attr { color: ${settings.hljs.hljs_tag_attr}; }
+                .hljs-tag .hljs-name { color: ${settings.hljs.hljs_tag_name}; }
+                .hljs-attribute { color: ${settings.hljs.hljs_attribute}; }
+                .hljs-doctag { color: ${settings.hljs.hljs_doctag}; }
+                .hljs-formula { color: ${settings.hljs.hljs_formula}; }
+                .hljs-keyword { color: ${settings.hljs.hljs_keyword}; }
+                .hljs-deletion { color: ${settings.hljs.hljs_deletion}; }
+                .hljs-number { color: ${settings.hljs.hljs_number}; }
+                .hljs-quote { color: ${settings.hljs.hljs_quote}; }
+                .hljs-selector-class { color: ${settings.hljs.hljs_selector_class}; }
+                .hljs-selector-id { color: ${settings.hljs.hljs_selector_id}; }
+                .hljs-selector-tag { color: ${settings.hljs.hljs_selector_tag}; }
+                .hljs-selector-attr { color: ${settings.hljs.hljs_selector_attr}; }
+                .hljs-selector-pseudo { color: ${settings.hljs.hljs_selector_pseudo}; }
+                .hljs-subst { color: ${settings.hljs.hljs_subst}; }
+                .hljs-string { color: ${settings.hljs.hljs_string}; }
+                .hljs-template-tag { color: ${settings.hljs.hljs_template_tag}; }
+                .hljs-type { color: ${settings.hljs.hljs_type}; }
+                .hljs-section { color: ${settings.hljs.hljs_section}; }
+                .hljs-title { color: ${settings.hljs.hljs_title}; }
+                .hljs-class .hljs-title { color: ${settings.hljs.hljs_class_title}; }
+                .hljs-class .hljs-keyword { color: ${settings.hljs.hljs_class_keyword}; }
+                .hljs-link { color: ${settings.hljs.hljs_link}; }
+                .hljs-operator { color: ${settings.hljs.hljs_operator}; }
+                .hljs-regexp { color: ${settings.hljs.hljs_regexp}; }
+                .hljs-symbol { color: ${settings.hljs.hljs_symbol}; }
+                .hljs-template-variable { color: ${settings.hljs.hljs_template_variable}; }
+                .hljs-variable { color: ${settings.hljs.hljs_variable}; }
+                .hljs-literal { color: ${settings.hljs.hljs_literal}; }
+                .hljs-addition { color: ${settings.hljs.hljs_addition}; }
+                .hljs-built_in { color: ${settings.hljs.hljs_built_in}; }
+                .hljs-bullet { color: ${settings.hljs.hljs_bullet}; }
+                .hljs-code { color: ${settings.hljs.hljs_code}; }
+                .hljs-meta { color: ${settings.hljs.hljs_meta}; }
+                .hljs-meta .hljs-string { color: ${settings.hljs.hljs_meta_string}; }
+                .hljs-emphasis { color: ${settings.hljs.hljs_emphasis}; }
+                .hljs-strong { color: ${settings.hljs.hljs_strong}; }
+                .hljs-function .hljs-title { color: ${settings.hljs.hljs_function_title}; }
+                .hljs-function .hljs-keyword { color: ${settings.hljs.hljs_function_keyword}; }
 			`
                 }
 

@@ -21,6 +21,7 @@
   "hljs_literal":null,
   "hljs_meta":null,
   "hljs_meta_string":null,
+  "hljs_meta_keyword":null,
   "hljs_number":null,
   "hljs_operator":null,
   "hljs_punctuation":null,
@@ -43,5 +44,7 @@
   "hljs_template_variable":null,
   "hljs_title":null,
   "hljs_type":null,
-  "hljs_variable":null
+  "hljs_variable":null,
+  "hljs_function_title":null,
+  "hljs_function_keyword":null
 }
