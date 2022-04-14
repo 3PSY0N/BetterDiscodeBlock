@@ -99,49 +99,50 @@ module.exports = (() => {
 
             const defaults = {
                 hljs: {
-                    iconColor:'#ffffff',
-                    background:'#252a36',
-                    foreground:'#839496',
-                    comments:'#586e75',
-                    quotes:'#586e75',
-                    lineNumbers:null,
-                    keywords:'#859900',
-                    tagSelectors:'#859900',
-                    headings:'#268bd2',
-                    titles:'#268bd2',
-                    names:'#268bd2',
-                    idSelectors:'#268bd2',
-                    classSelectors:'#268bd2',
-                    sections:'#268bd2',
-                    strings:'#2aa198',
-                    regularExpressions:'#2aa198',
-                    literals:'#2aa198',
-                    numbers:'#2aa198',
-                    documentationTags:'#2aa198',
-                    metaStrings:'#2aa198',
-                    attributeSelectors:'#cb4b16',
-                    pseudoSelectors:'#cb4b16',
-                    symbols:'#cb4b16',
-                    bulletPoints:'#cb4b16',
-                    meta:'#cb4b16',
-                    hyperlinks:'#cb4b16',
-                    stringInterpolation:'#cb4b16',
-                    metaKeywords:'#cb4b16',
-                    variables:'#b58900',
-                    types:'#b58900',
-                    unspecifiedAttributes:'#b58900',
-                    attributes:'#b58900',
-                    classes:'#b58900',
-                    builtIns:'#dc322f',
-                    deletions:'#dc322f',
-                    additions:'#baeeba',
-                    parameters:null,
-                    bold:null,
-                    codeblocks:null,
-                    italics:null,
-                    operators:null,
-                    punctuation:null,
-                    tags:null
+                    languageIconColor:null,
+                    hljs_background:null,
+                    hljs_foreground:null,
+                    hljs_lineNumber:null,
+                    hljs_comment:null,
+                    hljs_punctuation:null,
+                    hljs_tag:null,
+                    hljs_tag_attr:null,
+                    hljs_tag_name:null,
+                    hljs_attribute:null,
+                    hljs_doctag:null,
+                    hljs_formula:null,
+                    hljs_keyword:null,
+                    hljs_deletion:null,
+                    hljs_number:null,
+                    hljs_quote:null,
+                    hljs_selector_class:null,
+                    hljs_selector_id:null,
+                    hljs_selector_tag:null,
+                    hljs_selector_attr:null,
+                    hljs_selector_pseudo:null,
+                    hljs_subst:null,
+                    hljs_string:null,
+                    hljs_template_tag:null,
+                    hljs_type:null,
+                    hljs_section:null,
+                    hljs_title:null,
+                    hljs_class_title:null,
+                    hljs_class_keyword:null,
+                    hljs_link:null,
+                    hljs_operator:null,
+                    hljs_regexp:null,
+                    hljs_symbol:null,
+                    hljs_template_variable:null,
+                    hljs_variable:null,
+                    hljs_literal:null,
+                    hljs_addition:null,
+                    hljs_built_in:null,
+                    hljs_bullet:null,
+                    hljs_code:null,
+                    hljs_meta:null,
+                    hljs_meta_string:null,
+                    hljs_emphasis:null,
+                    hljs_strong:null
                 },
                 theme: ''
             }
@@ -477,11 +478,12 @@ module.exports = (() => {
                     clipboard.writeText(code);
                 }
 
+
                 get css() {
                     return `
 				.hljs {
-					background-color: ${settings.hljs.background} !important;
-					color: ${settings.hljs.foreground};
+					background-color: ${settings.hljs.hljs_background} !important;
+					color: ${settings.hljs.hljs_foreground};
 					position: relative;
 				}
 
@@ -504,7 +506,7 @@ module.exports = (() => {
                 .bd-codeblock-language svg {
 				    height: 20px;
 				    margin-right: 8px;
-				    color: ${settings.hljs.iconColor};
+				    color: ${settings.hljs.languageIconColor};
 				}
 				
 				.bd-codeblock-language .svg-icon {
@@ -530,7 +532,7 @@ module.exports = (() => {
 					padding-left: 5px;
 					padding-right: 8px;
 					user-select: none;
-					color: ${settings.hljs.lineNumbers}
+					color: ${settings.hljs.hljs_lineNumber}
 				}
 
 				.bd-codeblock-table td:last-child {
@@ -564,11 +566,19 @@ module.exports = (() => {
 				.hljs:hover .bd-codeblock-copy-btn {
 					opacity: 1;
 				}
+				
+                .hljs-emphasis {
+                    font-style: italic
+                }
+                    
+                .hljs-strong {
+                    font-weight: 700
+                }
 
 				${this.codeBlockStyle}				
 
 				.codeLine-14BKbG > span > span {
-					color: ${settings.hljs.foreground};
+					color: ${settings.hljs.hljs_foreground};
 				}
 
 				${this.textBoxStyle}
@@ -577,209 +587,51 @@ module.exports = (() => {
 
                 get codeBlockStyle() {
                     return `
-				.hljs > .bd-codeblock-table > tr > td > span > .hljs-tag {
-					color: ${settings.hljs.tags};
-				}
+                .hljs {
+                  background: ${settings.hljs.hljs_foreground} !important;
+                  color: ${settings.hljs.hljs_foreground} !important!;
+                }
 
-				.hljs > .bd-codeblock-table > tr > td > span > .hljs-tag > .hljs-name {
-					color: ${settings.hljs.names};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > span > .hljs-tag > .hljs-attr {
-					color: ${settings.hljs.unspecifiedAttributes};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .bash > .hljs-built_in {
-					color: ${settings.hljs.builtIns};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .bash > .hljs-variable {
-					color: ${settings.hljs.variables};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-tag {
-					color: ${settings.hljs.tags} !important;
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-tag > .hljs-name {
-					color: ${settings.hljs.names};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-tag > .hljs-attr {
-					color: ${settings.hljs.attributes};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-function > .hljs-params {
-					color: ${settings.hljs.parameters};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-function > .hljs-type {
-					color: ${settings.hljs.types};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-function > .hljs-params > .hljs-type {
-					color: ${settings.hljs.types};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-operator {
-					color: ${settings.hljs.operators};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-punctuation {
-					color: ${settings.hljs.punctuation};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-name {
-					color: ${settings.hljs.names};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-params {
-					color: ${settings.hljs.parameters};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-title {
-					color: ${settings.hljs.titles};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-function > .hljs-params > .hljs-built_in {
-					color: ${settings.hljs.builtIns};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-selector-attr {
-					color: ${settings.hljs.attributeSelectors};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-type {
-					color: ${settings.hljs.types};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-selector-id {
-					color: ${settings.hljs.idSelectors};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-selector-pseudo {
-					color: ${settings.hljs.pseudoSelectors};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-bullet {
-					color: ${settings.hljs.bulletPoints};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-emphasis {
-					color: ${settings.hljs.italics}
-				}
-
-				.hljs.md > .bd-codeblock-table > tr > td > .hljs-section {
-					color: ${settings.hljs.headings}
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-link {
-					color: ${settings.hljs.hyperlinks}
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-strong {
-					color: ${settings.hljs.bold}
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-addition {
-					color: ${settings.hljs.additions};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-deletion {
-					color: ${settings.hljs.deletions};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-regexp {
-					color: ${settings.hljs.regularExpressions};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-doctag {
-					color: ${settings.hljs.documentationTags};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-built_in {
-					color: ${settings.hljs.builtIns};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-attr {
-					color: ${settings.hljs.attributes};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td .hljs-section {
-					color: ${settings.hljs.sections};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td .hljs-meta {
-					color: ${settings.hljs.meta};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td .hljs-literal {
-					color: ${settings.hljs.literals};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-function .hljs-title {
-					color: ${settings.hljs.titles};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td > .hljs-class .hljs-title {
-					color: ${settings.hljs.classes};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td .hljs-keyword {
-					color: ${settings.hljs.keywords};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td .hljs-selector-tag {
-					color: ${settings.hljs.tagSelectors};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td .hljs-selector-class {
-					color: ${settings.hljs.classSelectors};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td .hljs-attribute {
-					color: ${settings.hljs.attributes};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td .hljs-symbol {
-					color: ${settings.hljs.symbols};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td .hljs-number {
-					color: ${settings.hljs.numbers};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td .hljs-string {
-					color: ${settings.hljs.strings};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td .hljs-string > .hljs-subst > .hljs-built_in {
-					color: ${settings.hljs.builtIns};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td .hljs-subst {
-					color: ${settings.hljs.stringInterpolation};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td .hljs-code {
-					color: ${settings.hljs.codeblocks};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td .hljs-comment {
-					color: ${settings.hljs.comments};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td .hljs-quote {
-					color: ${settings.hljs.quotes};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td .hljs-variable {
-					color: ${settings.hljs.variables};
-				}
-
-				.hljs > .bd-codeblock-table > tr > td .hljs-meta-string {
-					color: ${settings.hljs.metaStrings};
-				}
+                .hljs-comment { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-punctuation { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-tag { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-tag .hljs-attr { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-tag .hljs-name { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-attribute { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-doctag { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-formula { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-keyword { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-deletion { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-number { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-quote { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-selector-class { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-selector-id { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-selector-tag { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-selector-attr { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-selector-pseudo { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-subst { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-string { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-template-tag { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-type { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-section { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-title { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-class .hljs-title { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-class .hljs-keyword { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-link { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-operator { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-regexp { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-symbol { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-template-variable { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-variable { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-literal { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-addition { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-built_in { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-bullet { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-code { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-meta { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-meta .hljs-string { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-emphasis { color: ${settings.hljs.hljs_foreground}; }
+                .hljs-strong { color: ${settings.hljs.hljs_foreground}; }
 			`
                 }
 
